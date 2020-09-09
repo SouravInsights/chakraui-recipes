@@ -29,6 +29,7 @@ import {
   Privacy,
   Settings,
 } from "./Icons";
+import { FaAngleRight } from "react-icons/fa";
 
 interface PanelItemProps {
   name: As;
