@@ -16,7 +16,7 @@ import {
   Text,
   As,
   Skeleton,
-  SkeletonText,
+  SkeletonText
 } from "@chakra-ui/core";
 import {
   Bulb,
@@ -27,8 +27,8 @@ import {
   Help,
   Info,
   Privacy,
-  Settings,
-} from "./Icons";
+  Settings
+} from "../Icons/Icons";
 import { FaAngleRight } from "react-icons/fa";
 
 interface PanelItemProps {
@@ -68,24 +68,24 @@ const data: SettingsData[] = [
   {
     name: User,
     title: "Account",
-    description: "Profile, security, activity, account",
+    description: "Profile, security, activity, account"
   },
 
   {
     name: Settings,
     title: "General settings",
-    description: "Site language, notifications",
+    description: "Site language, notifications"
   },
   {
     name: Privacy,
     title: "Privacy",
-    description: "Mentions, visibility, data",
+    description: "Mentions, visibility, data"
   },
 
   {
     name: Feed,
     title: "Feed preferences",
-    description: "Languages, blocked users",
+    description: "Languages, blocked users"
   },
 
   { name: Globe, title: "Language", description: "Language" },
@@ -93,7 +93,7 @@ const data: SettingsData[] = [
   {
     name: Help,
     title: "Help & support",
-    description: "FAQ, privacy policy",
+    description: "FAQ, privacy policy"
   },
 
   { name: Feedback, title: "Feedback", description: "Contact us" },
@@ -101,20 +101,20 @@ const data: SettingsData[] = [
   {
     name: Info,
     title: "About lobox",
-    description: "Anyone on or off lobox",
+    description: "Anyone on or off lobox"
   },
 
   {
     name: Bulb,
     title: "Dark mode",
-    description: "Anyone on or off lobox",
+    description: "Anyone on or off lobox"
   },
 
   {
     name: Settings,
     title: "See all settings",
-    description: "",
-  },
+    description: ""
+  }
 ];
 
 interface SettingsPanelProps {
@@ -126,7 +126,7 @@ interface SettingsPanelProps {
 const SettingsPanel = ({
   isOpen,
   onClose,
-  finalFocusRef,
+  finalFocusRef
 }: SettingsPanelProps) => {
   const [apiData, setApiData] = useState<SettingsData[]>(
     Array.from({ length: data.length })
