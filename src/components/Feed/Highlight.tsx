@@ -30,7 +30,7 @@ export const HighlightModal = ({
   highlightOnClose
 }: HighlightModalProps) => {
   return (
-    <Modal size="lg" isOpen={highlightIsOpen} onClose={highlightOnClose}>
+    <Modal size="xl" isOpen={highlightIsOpen} onClose={highlightOnClose}>
       <ModalOverlay>
         <ModalContent>
           <ModalHeader
@@ -43,13 +43,13 @@ export const HighlightModal = ({
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <SimpleGrid mb="20px" columns={[2, 2, 3, 3]} spacing="40px">
+            <SimpleGrid mb="20px" columns={[2, 2, 3, 3]} spacing="20px">
               <Flex
                 alignItems="center"
                 justifyContent="center"
-                bg="blue.100"
                 flexDirection="column"
                 p="10px"
+                _hover={{ bg: "#F1F4F9" }}
               >
                 <Work boxSize={8} />
                 <Heading
@@ -58,6 +58,7 @@ export const HighlightModal = ({
                   lineHeight="18px"
                   color="#072252"
                   textAlign="center"
+                  my="8px"
                 >
                   Work
                 </Heading>
@@ -65,7 +66,7 @@ export const HighlightModal = ({
               <Flex
                 alignItems="center"
                 justifyContent="center"
-                bg="blue.100"
+                _hover={{ bg: "#F1F4F9" }}
                 flexDirection="column"
                 p="10px"
               >
@@ -75,6 +76,7 @@ export const HighlightModal = ({
                   fontWeight="bold"
                   lineHeight="18px"
                   color="#072252"
+                  my="8px"
                   textAlign="center"
                 >
                   Education
@@ -83,7 +85,7 @@ export const HighlightModal = ({
               <Flex
                 alignItems="center"
                 justifyContent="center"
-                bg="blue.100"
+                _hover={{ bg: "#F1F4F9" }}
                 flexDirection="column"
                 p="10px"
               >
@@ -94,6 +96,7 @@ export const HighlightModal = ({
                   lineHeight="18px"
                   color="#072252"
                   textAlign="center"
+                  my="8px"
                 >
                   Lifestyle
                 </Heading>
@@ -101,7 +104,7 @@ export const HighlightModal = ({
               <Flex
                 alignItems="center"
                 justifyContent="center"
-                bg="blue.100"
+                _hover={{ bg: "#F1F4F9" }}
                 flexDirection="column"
                 p="10px"
               >
@@ -112,6 +115,7 @@ export const HighlightModal = ({
                   lineHeight="18px"
                   color="#072252"
                   textAlign="center"
+                  my="8px"
                 >
                   Achivement
                 </Heading>
@@ -119,7 +123,7 @@ export const HighlightModal = ({
               <Flex
                 alignItems="center"
                 justifyContent="center"
-                bg="blue.100"
+                _hover={{ bg: "#F1F4F9" }}
                 flexDirection="column"
                 p="10px"
               >
@@ -130,6 +134,7 @@ export const HighlightModal = ({
                   lineHeight="18px"
                   color="#072252"
                   textAlign="center"
+                  my="10px"
                 >
                   Self Development
                 </Heading>
@@ -137,17 +142,18 @@ export const HighlightModal = ({
               <Flex
                 alignItems="center"
                 justifyContent="center"
-                bg="blue.100"
+                _hover={{ bg: "#F1F4F9" }}
                 flexDirection="column"
                 p="10px"
               >
-                <Create boxSize={8} />
+                <Create mt="5px" boxSize={8} />
                 <Heading
                   fontSize={["16px", "16px", "18px", "18px"]}
                   fontWeight="bold"
                   lineHeight="18px"
                   color="#072252"
                   textAlign="center"
+                  my="10px"
                 >
                   Create
                 </Heading>

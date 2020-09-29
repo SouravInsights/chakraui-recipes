@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   chakra,
   Flex,
   HStack,
+  Box,
+  Skeleton,
   useDisclosure,
-  IconButton,
+  IconButton
 } from "@chakra-ui/core";
 import Logo from "./Logo";
 import {
@@ -12,13 +14,75 @@ import {
   FaPlus,
   FaEnvelope,
   FaBell,
-  FaSlidersH,
+  FaSlidersH
 } from "react-icons/fa";
+import { IconType } from "react-icons/lib";
+
 import SettingsPanel from "./Panels";
 
+interface HeaderData {
+  name: string;
+}
+
+const data: HeaderData[] = [
+  {
+    name: "FaSearch"
+  },
+  {
+    name: "FaPlus"
+  },
+  {
+    name: "FaEnvelope"
+  },
+  {
+    name: "FaBell"
+  },
+  {
+    name: "FaSlidersH"
+  }
+];
+
+interface HeaderItemProps {
+  name: string;
+}
+
+const iconMap: Record<string, IconType> = {
+  FaSearch,
+  FaPlus,
+  FaEnvelope,
+  FaBell,
+  FaSlidersH
+};
+
+const HeaderItem = ({ name }: HeaderItemProps) => {
+ 
+  return (
+    <IconButton
+      as={iconMap[name]}
+      boxSize={6}
+      aria-label="Search"
+      bg="none"
+      color="#485363"
+ 
+    />
+  );
+};
+
 const HeaderContent = () => {
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  const { onOpen, isOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
+  const [apiData, setApiData] = useState<HeaderData[]>(
+    Array.from({ length: data.length })
+  );
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setApiData(data);
+      console.log("This will wait until api data is loaded.");
+    }, 3000);
+
+    return () => clearTimeout(delay);
+  });
 
   return (
     <>
@@ -31,47 +95,18 @@ const HeaderContent = () => {
 
         <Flex maxW="720px" align="center" color="gray.400">
           <HStack spacing="10">
-            <IconButton
-              icon={<FaSearch />}
-              aria-label="Search"
-              bg="none"
-              fontSize="20px"
-              color="#485363"
-            />
-
-            <IconButton
-              icon={<FaPlus />}
-              aria-label="Create posts"
-              bg="none"
-              fontSize="20px"
-              color="#485363"
-            />
-
-            <IconButton
-              icon={<FaEnvelope />}
-              aria-label="Messages"
-              bg="none"
-              fontSize="20px"
-              color="#485363"
-            />
-
-            <IconButton
-              icon={<FaBell />}
-              aria-label="Notification"
-              bg="none"
-              fontSize="20px"
-              color="#485363"
-            />
-
-            <IconButton
-              icon={<FaSlidersH />}
-              aria-label="Settings"
-              bg="none"
-              fontSize="20px"
-              color="#485363"
-              ref={btnRef}
-              onClick={onOpen}
-            />
+            {apiData.map((headerIcon, index) => {
+              if (headerIcon) {
+                return (
+                  <HeaderItem name={headerIcon.name} key={headerIcon.name} />
+                );
+              }
+              return (
+                <Box>
+                  <Skeleton boxSize={6} />
+                </Box>
+              );
+            })}
           </HStack>
         </Flex>
       </Flex>

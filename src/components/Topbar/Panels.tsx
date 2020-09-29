@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -14,7 +13,6 @@ import {
   Flex,
   Heading,
   Text,
-  As,
   Skeleton,
   SkeletonText
 } from "@chakra-ui/core";
@@ -32,7 +30,7 @@ import {
 import { FaAngleRight } from "react-icons/fa";
 
 interface PanelItemProps {
-  name: As;
+  name: string;
   title: string;
   description: string;
 }
@@ -41,7 +39,7 @@ const PanelItem = ({ name, title, description }: PanelItemProps) => {
   return (
     <Flex py={1} align="center">
       <Box>
-        <Icon as={name} boxSize={6} color="#485363" />
+        <Icon as={iconMap[name]} boxSize={6} color="#485363" />
       </Box>
       <Box mx={4} width="200px">
         <Heading fontSize="16px" color="#072252">
@@ -59,63 +57,74 @@ const PanelItem = ({ name, title, description }: PanelItemProps) => {
 };
 
 interface SettingsData {
-  name: As;
+  name: string;
   title: string;
   description: string;
 }
 
 const data: SettingsData[] = [
   {
-    name: User,
+    name: "User",
     title: "Account",
     description: "Profile, security, activity, account"
   },
 
   {
-    name: Settings,
+    name: "Settings",
     title: "General settings",
     description: "Site language, notifications"
   },
   {
-    name: Privacy,
+    name: "Privacy",
     title: "Privacy",
     description: "Mentions, visibility, data"
   },
 
   {
-    name: Feed,
+    name: "Feed",
     title: "Feed preferences",
     description: "Languages, blocked users"
   },
 
-  { name: Globe, title: "Language", description: "Language" },
+  { name: "Globe", title: "Language", description: "Language" },
 
   {
-    name: Help,
+    name: "Help",
     title: "Help & support",
     description: "FAQ, privacy policy"
   },
 
-  { name: Feedback, title: "Feedback", description: "Contact us" },
+  { name: "Feedback", title: "Feedback", description: "Contact us" },
 
   {
-    name: Info,
+    name: "Info",
     title: "About lobox",
     description: "Anyone on or off lobox"
   },
 
   {
-    name: Bulb,
+    name: "Bulb",
     title: "Dark mode",
     description: "Anyone on or off lobox"
   },
 
   {
-    name: Settings,
+    name: "Settings",
     title: "See all settings",
     description: ""
   }
 ];
+
+const iconMap: Record<string, typeof Settings | typeof Feed> = {
+  Settings,
+  Bulb,
+  Info,
+  Help,
+  Feed,
+  Globe,
+  Privacy,
+  User
+};
 
 interface SettingsPanelProps {
   isOpen: ReturnType<typeof useDisclosure>["isOpen"];
@@ -182,7 +191,6 @@ const SettingsPanel = ({
               );
             })}
           </DrawerBody>
-          <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </DrawerOverlay>
     </Drawer>
