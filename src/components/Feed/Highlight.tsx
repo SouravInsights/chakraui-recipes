@@ -67,7 +67,7 @@ export const HighlightModal = ({
   return (
     <>
       <Modal
-        size="xl"
+        size="2xl"
         isCentered={true}
         isOpen={highlightIsOpen}
         onClose={highlightOnClose}
@@ -82,7 +82,10 @@ export const HighlightModal = ({
             >
               Create highlight
             </ModalHeader>
-            <ModalCloseButton />
+            <ModalCloseButton
+              borderRadius="50%"
+              _focus={{ boxShadow: "none" }}
+            />
             <ModalBody>
               {highlightChoiceIsOpen ? (
                 <HighlightChoiceModal
@@ -90,7 +93,7 @@ export const HighlightModal = ({
                   highlightChoiceOnClose={highlightChoiceOnClose}
                 />
               ) : (
-                <SimpleGrid mb="20px" columns={[2, 2, 3, 3]} spacing="20px">
+                <SimpleGrid mb="20px" columns={[2, 2, 3, 3]}>
                   <Link onClick={highlightChoiceOnOpen}>
                     <Flex
                       alignItems="center"

@@ -59,7 +59,7 @@ export const HighlightChoiceModal = ({
   return (
     <>
       <Modal
-        size="xl"
+        size="2xl"
         isCentered={true}
         isOpen={highlightChoiceIsOpen}
         onClose={highlightChoiceOnClose}

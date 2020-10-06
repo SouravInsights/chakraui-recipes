@@ -55,14 +55,14 @@ export const HighlightForm = ({
   }
   return (
     <Modal
-      size="xl"
+      size="2xl"
       isCentered={true}
       isOpen={highlightFormIsOpen}
       onClose={highlightFormOnClose}
     >
       <ModalOverlay>
         <ModalContent>
-          <ModalCloseButton />
+          <ModalCloseButton borderRadius="50%" _focus={{ boxShadow: "none" }} />
           <ModalHeader
             fontSize="20px"
             fontWeight="bold"
