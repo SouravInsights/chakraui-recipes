@@ -11,6 +11,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+
+
 export const App = () => (
   <ApolloProvider client={client}>
     <ChakraProvider theme={theme} resetCSS portalZIndex={40}>
