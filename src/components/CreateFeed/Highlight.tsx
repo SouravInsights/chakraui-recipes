@@ -5,6 +5,7 @@ import {
   Link,
   Flex,
   Heading,
+  Image,
   Modal,
   ModalBody,
   ModalContent,
@@ -22,6 +23,7 @@ import {
   Create
 } from "../Icons/Icons";
 import { HighlightChoiceModal } from "./HighlightChoice";
+import CreateHighlight "../../../assets/CreateHighlight.svg";
 
 interface HighlightModalProps {
   highlightIsOpen: ReturnType<typeof useDisclosure>["isOpen"];
@@ -87,6 +89,8 @@ export const HighlightModal = ({
               _focus={{ boxShadow: "none" }}
             />
             <ModalBody>
+            
+              <Image src={CreateHighlight} />
               {highlightChoiceIsOpen ? (
                 <HighlightChoiceModal
                   highlightChoiceIsOpen={highlightChoiceIsOpen}

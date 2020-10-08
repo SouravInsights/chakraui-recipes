@@ -82,7 +82,12 @@ export const HighlightForm = ({
                 <Text fontSize="16px" fontWeight="bold">
                   Sourav Kumar Nanda
                 </Text>
-                <Badge fontSize="14px" fontWeight="normal" color="#485363">
+                <Badge
+                  fontSize="14px"
+                  fontWeight="normal"
+                  color="#485363"
+                  textTransform="none"
+                >
                   Public
                 </Badge>
               </Box>
