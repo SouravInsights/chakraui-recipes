@@ -27,6 +27,20 @@ import {
 } from "@chakra-ui/core";
 import { Suitcase, GalleryAlt, UserTag, Location } from "../Icons/Icons";
 
+import { gql, useMutation } from "@apollo/client";
+
+const postHighlightFormData = gql`
+  mutation PostHighlightFormData($input: FeedInput) {
+    createFeed(input: $input) {
+      userId
+      highlight {
+        title
+        company
+      }
+    }
+  }
+`;
+
 export interface HighlightFormProps {
   highlightFormIsOpen: ReturnType<typeof useDisclosure>["isOpen"];
   highlightFormOnClose: ReturnType<typeof useDisclosure>["onClose"];
@@ -36,9 +50,12 @@ export const HighlightForm = ({
   highlightFormIsOpen,
   highlightFormOnClose
 }: HighlightFormProps) => {
+  let input: any;
+  const [createFeed, { data }] = useMutation(postHighlightFormData);
+
   const { handleSubmit, errors, register, formState } = useForm();
 
-  function validateName(value) {
+  /*   function validateName(value) {
     let error;
     if (!value) {
       error = "Name is required";
@@ -52,7 +69,8 @@ export const HighlightForm = ({
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
     }, 1000);
-  }
+  } */
+
   return (
     <Modal
       size="2xl"
@@ -108,18 +126,32 @@ export const HighlightForm = ({
                 New Job
               </Heading>
             </Flex>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                createFeed({ variables: { type: input.value } });
+                input.value = "";
+              }}
+            >
               <FormControl isInvalid={errors.name}>
                 <Stack spacing={["14px", "14px", "20px", "20px"]}>
                   <Input
                     name="title"
                     placeholder="Job Title"
-                    ref={register({ validate: validateName })}
+                    ref={(node) => {
+                      input = node;
+                    }}
                   />
                   <FormErrorMessage>
                     {errors.name && errors.name.message}
                   </FormErrorMessage>
-                  <Input name="name" placeholder="Company" />
+                  <Input
+                    name="name"
+                    placeholder="Company"
+                    ref={(node) => {
+                      input = node;
+                    }}
+                  />
 
                   <Select placeholder="Contract Type" color="#485363">
                     <option value="option1">Option 1</option>
@@ -127,7 +159,15 @@ export const HighlightForm = ({
                     <option value="option3">Option 3</option>
                   </Select>
                   <Checkbox>Volunteer experience</Checkbox>
-                  <Textarea placeholder="Tell us more about your story..." />
+                  <Textarea
+                    placeholder="Tell us more about your story..."
+                    ref={(node) => {
+                      input = node;
+                    }}
+                  />
+                  <Button colorScheme="blue" type="submit">
+                    Post
+                  </Button>
                 </Stack>
               </FormControl>
             </form>
@@ -148,7 +188,9 @@ export const HighlightForm = ({
               />
             </Stack>
             <Box>
-              <Button colorScheme="blue">Post</Button>
+              <Button colorScheme="blue" type="submit">
+                Post
+              </Button>
             </Box>
           </ModalFooter>
         </ModalContent>
