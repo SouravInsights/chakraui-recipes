@@ -12,6 +12,7 @@ import {
 import { Gallery, Highlight, Location } from "../Icons/Icons";
 import { FeedPostModal } from "./FeedPost";
 import { HighlightModal } from "./Highlight";
+import { TagLocationModal } from "./TagLocation";
 
 const CreateFeed = () => {
   const {
@@ -24,6 +25,12 @@ const CreateFeed = () => {
     isOpen: highlightIsOpen,
     onOpen: highlightOnOpen,
     onClose: highlightOnClose
+  } = useDisclosure();
+
+  const {
+    isOpen: taglocationIsOpen,
+    onOpen: taglocationOnOpen,
+    onClose: taglocationOnClose
   } = useDisclosure();
 
   return (
@@ -97,6 +104,7 @@ const CreateFeed = () => {
             _hover={{ bg: "none" }}
             _focus={{ boxShadow: "none" }}
             _active={{ bg: "none" }}
+            onClick={taglocationOnOpen}
           >
             Check-in
           </Button>
@@ -109,6 +117,10 @@ const CreateFeed = () => {
       <HighlightModal
         highlightIsOpen={highlightIsOpen}
         highlightOnClose={highlightOnClose}
+      />
+      <TagLocationModal
+        taglocationIsOpen={taglocationIsOpen}
+        taglocationOnClose={taglocationOnClose}
       />
     </>
   );
