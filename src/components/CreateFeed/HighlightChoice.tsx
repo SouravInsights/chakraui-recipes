@@ -11,7 +11,7 @@ import {
   useDisclosure
 } from "@chakra-ui/core";
 import { Globe } from "../Icons/Icons";
-import { HighlightForm } from "./HighlightForm";
+import { HighlightFormModal } from "./HighlightForm";
 
 export interface HighlightItemProps {
   itemIcon?: string;
@@ -76,7 +76,7 @@ export const HighlightChoiceModal = ({
             </ModalHeader>
             <ModalBody>
               {highlightFormIsOpen ? (
-                <HighlightForm
+                <HighlightFormModal
                   highlightFormIsOpen={highlightFormIsOpen}
                   highlightFormOnClose={highlightFormOnClose}
                 />
@@ -94,7 +94,7 @@ export const HighlightChoiceModal = ({
         </ModalOverlay>
       </Modal>
 
-      <HighlightForm
+      <HighlightFormModal
         highlightFormIsOpen={highlightFormIsOpen}
         highlightFormOnClose={highlightFormOnClose}
       />

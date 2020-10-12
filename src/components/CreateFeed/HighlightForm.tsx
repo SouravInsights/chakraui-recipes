@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Avatar,
@@ -29,9 +29,9 @@ import { Suitcase, GalleryAlt, UserTag, Location } from "../Icons/Icons";
 
 import { gql, useMutation } from "@apollo/client";
 
-const postHighlightFormData = gql`
-  mutation PostHighlightFormData($input: FeedInput) {
-    createFeed(input: $input) {
+const POST_HIGHLIGHT_FORM_DATA = gql`
+  mutation PostHighlightFormData($newFeed: FeedInput) {
+    createFeed(input: $newFeed) {
       userId
       highlight {
         title
@@ -41,34 +41,29 @@ const postHighlightFormData = gql`
   }
 `;
 
-export interface HighlightFormProps {
+export interface HighlightFormModalProps {
   highlightFormIsOpen: ReturnType<typeof useDisclosure>["isOpen"];
   highlightFormOnClose: ReturnType<typeof useDisclosure>["onClose"];
 }
 
-export const HighlightForm = ({
+export const HighlightFormModal = ({
   highlightFormIsOpen,
   highlightFormOnClose
-}: HighlightFormProps) => {
-  let input: any;
-  const [createFeed, { data }] = useMutation(postHighlightFormData);
+}: HighlightFormModalProps) => {
+  const [createFeed, newFeed] = useMutation(POST_HIGHLIGHT_FORM_DATA);
 
-  const { handleSubmit, errors, register, formState } = useForm();
+  const onSubmit = (input) => {
+    createFeed({
+      variables: { newFeed: input }
+    });
+  };
 
-  /*   function validateName(value) {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    } else if (value !== "Naruto") {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error || true;
+  /*   if (loading) {
+    return <p>loading...</p>;
   }
 
-  function onSubmit(values) {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-    }, 1000);
+  if (error) {
+    return <p>error!</p>;
   } */
 
   return (
@@ -125,52 +120,11 @@ export const HighlightForm = ({
               >
                 New Job
               </Heading>
-            </Flex>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                createFeed({ variables: { type: input.value } });
-                input.value = "";
-              }}
-            >
-              <FormControl isInvalid={errors.name}>
-                <Stack spacing={["14px", "14px", "20px", "20px"]}>
-                  <Input
-                    name="title"
-                    placeholder="Job Title"
-                    ref={(node) => {
-                      input = node;
-                    }}
-                  />
-                  <FormErrorMessage>
-                    {errors.name && errors.name.message}
-                  </FormErrorMessage>
-                  <Input
-                    name="name"
-                    placeholder="Company"
-                    ref={(node) => {
-                      input = node;
-                    }}
-                  />
 
-                  <Select placeholder="Contract Type" color="#485363">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                  </Select>
-                  <Checkbox>Volunteer experience</Checkbox>
-                  <Textarea
-                    placeholder="Tell us more about your story..."
-                    ref={(node) => {
-                      input = node;
-                    }}
-                  />
-                  <Button colorScheme="blue" type="submit">
-                    Post
-                  </Button>
-                </Stack>
-              </FormControl>
-            </form>
+              {/* Highlight form component */}
+
+              <HighlightForm onSubmit={onSubmit} />
+            </Flex>
           </ModalBody>
           <ModalFooter justifyContent="space-between">
             <Stack direction="row">
@@ -196,5 +150,53 @@ export const HighlightForm = ({
         </ModalContent>
       </ModalOverlay>
     </Modal>
+  );
+};
+
+const HighlightForm = ({ onSubmit }) => {
+  const [user, setUser] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [company, setCompany] = React.useState("");
+
+  const submit = (e) => {
+    e.preventDefault();
+    onSubmit({ user, title, company });
+  };
+
+  return (
+    <form onSubmit={submit}>
+      <Stack spacing={["14px", "14px", "20px", "20px"]}>
+        <Input
+          name="user"
+          placeholder="User ID"
+          value={user}
+          onChange={(e) => setUser(parseInt(e.target.value))}
+        />
+        <Input
+          name="title"
+          placeholder="Job Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <Input
+          name="name"
+          value={company}
+          placeholder="Company"
+          onChange={(e) => setCompany(e.target.value)}
+        />
+
+        {/*   <Select placeholder="Contract Type" color="#485363">
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </Select>
+        <Checkbox>Volunteer experience</Checkbox>
+        <Textarea placeholder="Tell us more about your story..." /> */}
+        <Button colorScheme="blue" type="submit">
+          Post
+        </Button>
+      </Stack>
+    </form>
   );
 };
