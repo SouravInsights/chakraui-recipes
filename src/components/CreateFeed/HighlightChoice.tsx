@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Link,
+  Icon,
+  IconButton,
   Heading,
   Flex,
   Modal,
@@ -10,7 +12,7 @@ import {
   ModalHeader,
   useDisclosure
 } from "@chakra-ui/core";
-import { Globe } from "../Icons/Icons";
+import { Globe, LeftArrow } from "../Icons/Icons";
 import { HighlightFormModal } from "./HighlightForm";
 
 export interface HighlightItemProps {
@@ -72,6 +74,13 @@ export const HighlightChoiceModal = ({
               color="#072252"
               lineHeight="23px"
             >
+              <IconButton
+                icon={LeftArrow}
+                boxSize={4}
+                borderRadius="50%"
+                transition="all 0.2s"
+                _hover={{ bg: "#F1F4F9" }}
+              />
               Create highlight
             </ModalHeader>
             <ModalBody>

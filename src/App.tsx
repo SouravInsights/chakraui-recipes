@@ -8,7 +8,7 @@ import { Feed } from "./components/Feed/Feed";
 import "./index.css";
 
 const client = new ApolloClient({
-  uri: "https://api.dev.lobox.com/feed/graphiql",
+  uri: "https://api.dev.lobox.com/feed/graphql",
   cache: new InMemoryCache()
 });
 

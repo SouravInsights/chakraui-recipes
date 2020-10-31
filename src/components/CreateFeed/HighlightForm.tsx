@@ -33,10 +33,7 @@ const POST_HIGHLIGHT_FORM_DATA = gql`
   mutation PostHighlightFormData($newFeed: FeedInput) {
     createFeed(input: $newFeed) {
       userId
-      highlight {
-        title
-        company
-      }
+      content
     }
   }
 `;
@@ -154,45 +151,50 @@ export const HighlightFormModal = ({
 };
 
 const HighlightForm = ({ onSubmit }) => {
-  const [user, setUser] = React.useState("");
-  const [title, setTitle] = React.useState("");
+  const [userId, setUserId] = React.useState("");
+  const [content, setContent] = React.useState("");
   const [company, setCompany] = React.useState("");
 
   const submit = (e) => {
     e.preventDefault();
-    onSubmit({ user, title, company });
+    onSubmit({ userId, content });
   };
 
   return (
     <form onSubmit={submit}>
       <Stack spacing={["14px", "14px", "20px", "20px"]}>
         <Input
-          name="user"
+          name="userId"
           placeholder="User ID"
-          value={user}
-          onChange={(e) => setUser(parseInt(e.target.value))}
+          value={userId}
+          onChange={(e) => setUserId(parseInt(e.target.value))}
         />
+        {console.log(userId)}
         <Input
-          name="title"
-          placeholder="Job Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          name="content"
+          placeholder="Content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         />
+        {console.log(content)}
+        {/*  
+          <Input
+            name="name"
+            value={company}
+            placeholder="Company"
+            onChange={(e) => setCompany(e.target.value)}
+          /> 
+        */}
 
-        <Input
-          name="name"
-          value={company}
-          placeholder="Company"
-          onChange={(e) => setCompany(e.target.value)}
-        />
-
-        {/*   <Select placeholder="Contract Type" color="#485363">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </Select>
-        <Checkbox>Volunteer experience</Checkbox>
-        <Textarea placeholder="Tell us more about your story..." /> */}
+        {/*   
+          <Select placeholder="Contract Type" color="#485363">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </Select>
+          <Checkbox>Volunteer experience</Checkbox>
+          <Textarea placeholder="Tell us more about your story..." /> 
+        */}
         <Button colorScheme="blue" type="submit">
           Post
         </Button>

@@ -9,6 +9,34 @@ import {
   Food
 } from "../Icons/Icons";
 
+const LocationTitle = ({ title }) => {
+  return (
+    <Heading
+      fontSize={["16px", "16px", "16px", "16px"]}
+      fontWeight="bold"
+      color="#072252"
+      textAlign="left"
+      // margin="10px"
+    >
+      {title}
+    </Heading>
+  );
+};
+
+const LocationCatagory = ({ catagory }) => {
+  return (
+    <Heading
+      as="h6"
+      size="xs"
+      fontSize={["12px", "12px", "14px", "14px"]}
+      textAlign="left"
+      color="#4A5568"
+    >
+      {catagory}
+    </Heading>
+  );
+};
+
 export const LocationItem = () => {
   return (
     <>
@@ -32,24 +60,8 @@ export const LocationItem = () => {
                 flexDirection="column"
                 marginLeft="10px"
               >
-                <Heading
-                  fontSize={["16px", "16px", "16px", "16px"]}
-                  fontWeight="bold"
-                  color="#072252"
-                  textAlign="left"
-                  // margin="10px"
-                >
-                  {item.title}
-                </Heading>
-                <Heading
-                  as="h6"
-                  size="xs"
-                  fontSize={["12px", "12px", "14px", "14px"]}
-                  textAlign="left"
-                  color="#4A5568"
-                >
-                  {item.subTitle}
-                </Heading>
+                <LocationTitle title={item.title} />
+                <LocationCatagory catagory={item.subTitle} />
               </Flex>
             </Flex>
           </SimpleGrid>
