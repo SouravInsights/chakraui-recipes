@@ -5,9 +5,9 @@ import {
   ModalOverlay,
   ModalContent,
   ModalBody,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/core";
-import LikesTab from "./LikesTab"
+import LikesTab from "./LikesTab";
 
 export interface LikesTabModalProps {
   tabsIsOpen: ReturnType<typeof useDisclosure>["isOpen"];
@@ -19,11 +19,10 @@ const LikesTabModal = ({ tabsIsOpen, tabsOnClose }: LikesTabModalProps) => {
       <Modal size="xl" isOpen={tabsIsOpen} onClose={tabsOnClose}>
         <ModalOverlay>
           <ModalContent>
-            <ModalHeader>  
-            </ModalHeader>
-            <ModalBody>
+            <ModalHeader>
               <LikesTab />
-            </ModalBody>
+            </ModalHeader>
+            <ModalBody></ModalBody>
           </ModalContent>
         </ModalOverlay>
       </Modal>
@@ -31,4 +30,4 @@ const LikesTabModal = ({ tabsIsOpen, tabsOnClose }: LikesTabModalProps) => {
   );
 };
 
-export default LikesTabModal
+export default LikesTabModal;

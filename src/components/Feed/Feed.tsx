@@ -12,17 +12,12 @@ import {
   PopoverBody
 } from "@chakra-ui/core";
 import { gql, useQuery } from "@apollo/client";
-import {
-  LikeReact,
-  Dislike,
-  Boost,
-  Doc,
-  Congrats
-} from "../Icons/Icons";
-import { Comment } from "./Comment"
-import { ActionButton } from "./ActionButton"
-import { FeedHeader } from "./FeedHeader"
-import { LikesTabModal } from "./LikesTabModal"
+import { LikeReact, Dislike, Boost, Doc, Congrats } from "../Icons/Icons";
+import Comment from "./Comment";
+import { ActionButton } from "./ActionButton";
+import { FeedHeader } from "./FeedHeader";
+import LikesTabModal from "./LikesTabModal";
+import CommentReaction from "./CommentReaction";
 
 const FEED_DATA = gql`
   query getFeed {
@@ -112,26 +107,12 @@ export const Feed = () => {
             >
               {feed.content}
             </Text>
-            <Popover
-              returnFocusOnClose={false}
-              isOpen={isOpen}
-              onClose={close}
-              placement="top"
-              closeOnBlur={false}
-            >
-              <PopoverContent>
-                <PopoverBody>
-                  <HStack justify="space-between">
-                    <LikeReact boxSize={10} color="#5384EE" />
-                    <Boost boxSize={10} color="#FF9A3E" />
-                    <Congrats boxSize={10} color="#5384EE" />
-                    <Dislike boxSize={10} color="#5384EE" />
-                    <Doc boxSize={10} color="#F47B61" />
-                    <Dislike boxSize={10} color="#5384EE" />
-                  </HStack>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+            {isOpen && (
+              <CommentReaction
+                handleIcon={handleIcon}
+                default={likeButtonIcon}
+              />
+            )}
             <Flex
               flexDirection={["row", "row", "row", "row"]}
               justify={[
@@ -141,13 +122,13 @@ export const Feed = () => {
                 "space-around"
               ]}
             >
-               <ActionButton
+              <ActionButton
                 label="Like"
                 iconName={likeButtonIcon}
                 count={21}
                 onIconClick={open}
                 onCountClick={visible}
-               />
+              />
               <ActionButton
                 label="Comment"
                 iconName="CommentIcon"
@@ -184,7 +165,7 @@ export const Feed = () => {
               </Box>
             </HStack>
           </Stack>
-            <LikesTabModal tabsIsOpen={showModal} tabsOnClose={invisible} />
+          <LikesTabModal tabsIsOpen={showModal} tabsOnClose={invisible} />
         </Flex>
       ))}
     </>

@@ -1,11 +1,8 @@
 import * as React from "react";
 import { Icon, Button, Text } from "@chakra-ui/core";
-import {
-  LikeIcon,
-  ShareIcon,
-  CommentIcon,
-} from "../Icons/Icons";
-import { Count } from "./Count"
+import { LikeIcon, ShareIcon, CommentIcon } from "../Icons/Icons";
+import { Count } from "./Count";
+
 // ActionButton props
 export interface ActionButtonProps {
   label: string;
@@ -19,7 +16,7 @@ const iconMap: Record<string, typeof LikeIcon> = {
 };
 
 // ActionButton component
-export const ActionButton = ({
+const ActionButton = ({
   label,
   iconName,
   count,
@@ -41,14 +38,21 @@ export const ActionButton = ({
           ""
         )
       }
-      rightIcon={<Count label={count} onClick={((e) => e.stopPropagation, onCountClick)} />}
+      rightIcon={
+        <Count
+          label={count}
+          onClick={((e) => e.stopPropagation, onCountClick)}
+        />
+      }
       variant="ghost"
       _hover={{ bg: "none" }}
       _focus={{ boxShadow: "none" }}
       _active={{ bg: "none" }}
       onClick={((e) => e.stopPropagation, onIconClick)}
     >
-     <Text color={labelColor ? labelColor : ""}>{label}</Text>
+      <Text color={labelColor ? labelColor : ""}>{label}</Text>
     </Button>
   );
 };
+
+export default ActionButton;
