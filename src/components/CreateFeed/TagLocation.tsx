@@ -1,9 +1,5 @@
 import React from "react";
 import {
-  SimpleGrid,
-  Button,
-  Link,
-  Flex,
   Heading,
   Input,
   InputGroup,

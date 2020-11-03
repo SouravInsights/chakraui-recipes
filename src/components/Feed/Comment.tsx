@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Flex, Text, Avatar, HStack, Heading } from "@chakra-ui/core";
 import { gql, useQuery } from "@apollo/client";
-import { User } from "./User";
+import User from "./User";
 
 const FEED_COMMENTS = gql`
   query GetFeedParentComment {

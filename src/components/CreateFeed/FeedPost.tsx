@@ -34,7 +34,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 import { UserTag, GalleryAlt, Location } from "../Icons/Icons";
-import { Portal } from "../Editor/Editor";
+import { Portal } from "./Editor";
 
 interface FeedPostModalProps {
   feedPostIsOpen: ReturnType<typeof useDisclosure>["isOpen"];
