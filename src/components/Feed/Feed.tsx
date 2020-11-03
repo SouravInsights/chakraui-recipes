@@ -12,10 +12,10 @@ import {
   PopoverBody
 } from "@chakra-ui/core";
 import { gql, useQuery } from "@apollo/client";
-import { LikeReact, Dislike, Boost, Doc, Congrats } from "../Icons/Icons";
+import { Like, Dislike, Boost, Doc, Congrats } from "../Icons/Icons";
 import Comment from "./Comment";
-import { ActionButton } from "./ActionButton";
-import { FeedHeader } from "./FeedHeader";
+import ActionButton from "./ActionButton";
+import FeedHeader from "./FeedHeader";
 import LikesTabModal from "./LikesTabModal";
 import CommentReaction from "./CommentReaction";
 

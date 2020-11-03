@@ -1,9 +1,9 @@
-interface LikesTabsProps {
+/* interface LikesTabsProps {
   label: string;
   iconName: string;
-}
+} */
 
-const likesTabBodyData: LikesTabsProps[] = [
+const likesTabBodyData = [
   {
     tabData: [
       {
@@ -155,4 +155,4 @@ const likesTabBodyData: LikesTabsProps[] = [
   }
 ];
 
-export default likesTabBodyData
+export default likesTabBodyData;

@@ -7,7 +7,7 @@ export interface UserProp {
 }
 
 // User handle component
-export const User = ({ name }: UserProp) => {
+const User = ({ name }: UserProp) => {
   return (
     <Heading
       fontStyle="normal"
@@ -19,3 +19,5 @@ export const User = ({ name }: UserProp) => {
     </Heading>
   );
 };
+
+export default User;

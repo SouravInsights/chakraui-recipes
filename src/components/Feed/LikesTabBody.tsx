@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Flex,
-  Text,
-  Avatar,
-  HStack,
-} from "@chakra-ui/core";
-import { User } from "./User"
-import { ActionButton } from "./ActionButton"
+import { Flex, Text, Avatar, HStack } from "@chakra-ui/core";
+import User from "./User";
+import ActionButton from "./ActionButton";
 
 const TabsDataBody = ({ image, name, status }) => {
   return (
@@ -36,4 +31,4 @@ const TabsDataBody = ({ image, name, status }) => {
   );
 };
 
-export default TabsDataBody
+export default TabsDataBody;

@@ -1,17 +1,8 @@
 import * as React from "react";
-import {
-  Box,
-  ButtonGroup
-} from "@chakra-ui/core";
-import {
-  Like,
-  Dislike,
-  Boost,
-  Doc,
-  Congrats
-} from "../Icons/Icons";
+import { Box, ButtonGroup } from "@chakra-ui/core";
+import { Like, Dislike, Boost, Doc, Congrats } from "../Icons/Icons";
 
-export const CommentReaction = ({ ...props }) => {
+const CommentReaction = ({ ...props }) => {
   return (
     <Box
       bg="white"
@@ -59,3 +50,5 @@ export const CommentReaction = ({ ...props }) => {
     </Box>
   );
 };
+
+export default CommentReaction;

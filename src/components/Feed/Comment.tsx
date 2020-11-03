@@ -1,14 +1,7 @@
 import * as React from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  Avatar,
-  HStack,
-  Heading
-} from "@chakra-ui/core";
+import { Box, Flex, Text, Avatar, HStack, Heading } from "@chakra-ui/core";
 import { gql, useQuery } from "@apollo/client";
-import { User } from "./User"
+import { User } from "./User";
 
 const FEED_COMMENTS = gql`
   query GetFeedParentComment {
@@ -23,7 +16,7 @@ const FEED_COMMENTS = gql`
   }
 `;
 
-export const Comment = ({ ...props }) => {
+const Comment = ({ ...props }) => {
   const { data, loading, error } = useQuery(FEED_COMMENTS);
 
   if (loading) return "Loading...";
@@ -87,3 +80,5 @@ export const Comment = ({ ...props }) => {
     </>
   );
 };
+
+export default Comment;

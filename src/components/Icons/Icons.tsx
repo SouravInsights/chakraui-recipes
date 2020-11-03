@@ -1428,8 +1428,8 @@ export const CommentIcon = createIcon({
 
 // Reaction Icons
 
-export const LikeReact = createIcon({
-  displayName: "LikeReact",
+export const Like = createIcon({
+  displayName: "Like",
   viewBox: "0 0 41 41",
   path: (
     <g fill="currentColor">

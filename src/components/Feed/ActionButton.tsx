@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Icon, Button, Text } from "@chakra-ui/core";
 import { LikeIcon, ShareIcon, CommentIcon } from "../Icons/Icons";
-import { Count } from "./Count";
+import Count from "./Count";
 
 // ActionButton props
 export interface ActionButtonProps {

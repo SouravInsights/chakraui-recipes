@@ -2,11 +2,11 @@ import * as React from "react";
 import { Text } from "@chakra-ui/core";
 
 // Count props
-interface CountProps {
+export interface CountProps {
   label: number;
 }
 // Count component
-export const Count = ({ label, onClick, weight }: CountProps) => {
+const Count = ({ label, onClick, weight }: CountProps) => {
   return (
     <Text
       fontStyle="normal"
@@ -19,3 +19,5 @@ export const Count = ({ label, onClick, weight }: CountProps) => {
     </Text>
   );
 };
+
+export default Count;

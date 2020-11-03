@@ -5,22 +5,15 @@ import {
   Icon,
   Tabs,
   TabList,
-  TabData,
   TabPanels,
   Tab,
   TabPanel
 } from "@chakra-ui/core";
-import LikesTabBody from "./LikesTabBody"
+import LikesTabBody from "./LikesTabBody";
 import { gql, useQuery } from "@apollo/client";
-import {
- Like,
-  Dislike,
-  Boost,
-  Doc,
-  Congrats
-} from "../Icons/Icons";
-import { Count } from "./Count"
-import likesTabBodyData from "./likesTabBodyData"
+import { Like, Dislike, Boost, Doc, Congrats } from "../Icons/Icons";
+import Count from "./Count";
+import likesTabBodyData from "./likesTabBodyData";
 
 const REACT_FEED = gql`
   query getFeedReactionSummary {
@@ -50,7 +43,7 @@ const LikeTabs = ({ label, string }: LikesTabsProps) => {
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
   if (data.getFeedReactionSummary) {
-    let reactData = []
+    let reactData = [];
     let allCount = 0;
     data.getFeedReactionSummary.map((reacts) => {
       allCount += reacts.count;
@@ -151,5 +144,4 @@ const LikeTabs = ({ label, string }: LikesTabsProps) => {
   }
 };
 
-export default LikeTabs
-
+export default LikeTabs;

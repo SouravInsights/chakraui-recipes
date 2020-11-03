@@ -1,19 +1,12 @@
 import * as React from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  Avatar,
-  Badge,
-  HStack,
-} from "@chakra-ui/core";
-import { User } from "./User"
+import { Box, Flex, Text, Avatar, Badge, HStack } from "@chakra-ui/core";
+import User from "./User";
 
 export interface FeedHeaderProp {
   privacy: string;
 }
 
-export const FeedHeader = ({ privacy }: FeedHeaderProp) => {
+const FeedHeader = ({ privacy }: FeedHeaderProp) => {
   return (
     <Flex align="center">
       <Avatar
@@ -49,3 +42,5 @@ export const FeedHeader = ({ privacy }: FeedHeaderProp) => {
     </Flex>
   );
 };
+
+export default FeedHeader;
